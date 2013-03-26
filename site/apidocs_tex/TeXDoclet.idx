@@ -1,122 +1,59 @@
-\indexentry{ClassFilter@\textit  { ClassFilter}|hyperpage}{7}
-\indexentry{includeClass(ClassDoc)|hyperpage}{8}
-\indexentry{ClassFilter@\textit  { ClassFilter}|hyperpage}{8}
-\indexentry{includeClass(ClassDoc)|hyperpage}{8}
-\indexentry{ClassHierachy|hyperpage}{8}
+\indexentry{ClassFilter@\textit  { ClassFilter}|hyperpage}{5}
+\indexentry{includeClass(ClassDoc)|hyperpage}{5}
+\indexentry{ClassHierachy|hyperpage}{5}
+\indexentry{root|hyperpage}{6}
+\indexentry{ClassHierachy()|hyperpage}{6}
+\indexentry{add(ClassDoc)|hyperpage}{6}
+\indexentry{printBranch(RootDoc, SortedMap, double, double)|hyperpage}{6}
+\indexentry{printTree(RootDoc, double)|hyperpage}{6}
+\indexentry{HelpOutput|hyperpage}{6}
+\indexentry{HelpOutput()|hyperpage}{7}
+\indexentry{printHelp()|hyperpage}{7}
+\indexentry{HTMLtoLaTeXBackEnd|hyperpage}{7}
+\indexentry{HTMLtoLaTeXBackEnd(StringBuffer)|hyperpage}{8}
+\indexentry{fixText(String)|hyperpage}{8}
+\indexentry{handleEndTag(HTML.Tag, int)|hyperpage}{8}
+\indexentry{handleSimpleTag(HTML.Tag, MutableAttributeSet, int)|hyperpage}{8}
+\indexentry{handleStartTag(HTML.Tag, MutableAttributeSet, int)|hyperpage}{8}
+\indexentry{handleText(char\lbrack \rbrack , int)|hyperpage}{8}
+\indexentry{InterfaceHierachy|hyperpage}{9}
 \indexentry{root|hyperpage}{9}
-\indexentry{ClassHierachy()|hyperpage}{9}
+\indexentry{InterfaceHierachy()|hyperpage}{9}
 \indexentry{add(ClassDoc)|hyperpage}{9}
-\indexentry{printBranch(RootDoc, SortedMap, double, double)|hyperpage}{9}
-\indexentry{printTree(RootDoc, double)|hyperpage}{9}
-\indexentry{ClassHierachy|hyperpage}{10}
-\indexentry{root|hyperpage}{10}
-\indexentry{ClassHierachy()|hyperpage}{10}
-\indexentry{add(ClassDoc)|hyperpage}{10}
 \indexentry{printBranch(RootDoc, SortedMap, double, double)|hyperpage}{10}
-\indexentry{printTree(RootDoc, double)|hyperpage}{11}
-\indexentry{HelpOutput|hyperpage}{11}
-\indexentry{HelpOutput()|hyperpage}{11}
-\indexentry{printHelp()|hyperpage}{11}
-\indexentry{HelpOutput|hyperpage}{11}
-\indexentry{HelpOutput()|hyperpage}{12}
-\indexentry{printHelp()|hyperpage}{12}
-\indexentry{HTMLtoLaTeXBackEnd|hyperpage}{12}
-\indexentry{HTMLtoLaTeXBackEnd(StringBuffer)|hyperpage}{13}
-\indexentry{fixText(String)|hyperpage}{13}
-\indexentry{handleEndTag(HTML.Tag, int)|hyperpage}{13}
-\indexentry{handleSimpleTag(HTML.Tag, MutableAttributeSet, int)|hyperpage}{13}
-\indexentry{handleStartTag(HTML.Tag, MutableAttributeSet, int)|hyperpage}{13}
-\indexentry{handleText(char\lbrack \rbrack , int)|hyperpage}{13}
-\indexentry{HTMLtoLaTeXBackEnd|hyperpage}{14}
-\indexentry{HTMLtoLaTeXBackEnd(StringBuffer)|hyperpage}{14}
-\indexentry{fixText(String)|hyperpage}{15}
-\indexentry{handleEndTag(HTML.Tag, int)|hyperpage}{15}
-\indexentry{handleSimpleTag(HTML.Tag, MutableAttributeSet, int)|hyperpage}{15}
-\indexentry{handleStartTag(HTML.Tag, MutableAttributeSet, int)|hyperpage}{15}
-\indexentry{handleText(char\lbrack \rbrack , int)|hyperpage}{15}
-\indexentry{InterfaceHierachy|hyperpage}{15}
-\indexentry{root|hyperpage}{16}
-\indexentry{InterfaceHierachy()|hyperpage}{16}
-\indexentry{add(ClassDoc)|hyperpage}{16}
-\indexentry{printBranch(RootDoc, SortedMap, double, double)|hyperpage}{16}
-\indexentry{printTree(RootDoc, double)|hyperpage}{16}
-\indexentry{InterfaceHierachy|hyperpage}{17}
-\indexentry{root|hyperpage}{17}
-\indexentry{InterfaceHierachy()|hyperpage}{17}
-\indexentry{add(ClassDoc)|hyperpage}{17}
-\indexentry{printBranch(RootDoc, SortedMap, double, double)|hyperpage}{18}
-\indexentry{printTree(RootDoc, double)|hyperpage}{18}
-\indexentry{MarkdownTest|hyperpage}{18}
-\indexentry{MarkdownTest()|hyperpage}{22}
-\indexentry{MarkdownTest|hyperpage}{22}
-\indexentry{MarkdownTest()|hyperpage}{26}
-\indexentry{Package|hyperpage}{26}
-\indexentry{pkgDoc|hyperpage}{27}
-\indexentry{pkg|hyperpage}{27}
-\indexentry{classes|hyperpage}{27}
-\indexentry{interfaces|hyperpage}{27}
-\indexentry{exceptions|hyperpage}{27}
-\indexentry{errors|hyperpage}{27}
-\indexentry{Package(String, PackageDoc)|hyperpage}{28}
-\indexentry{addElement(ClassDoc)|hyperpage}{28}
-\indexentry{sort()|hyperpage}{28}
-\indexentry{Package|hyperpage}{28}
-\indexentry{pkgDoc|hyperpage}{29}
-\indexentry{pkg|hyperpage}{29}
-\indexentry{classes|hyperpage}{29}
-\indexentry{interfaces|hyperpage}{29}
-\indexentry{exceptions|hyperpage}{29}
-\indexentry{errors|hyperpage}{29}
-\indexentry{Package(String, PackageDoc)|hyperpage}{29}
-\indexentry{addElement(ClassDoc)|hyperpage}{30}
-\indexentry{sort()|hyperpage}{30}
-\indexentry{TableInfo|hyperpage}{30}
-\indexentry{TableInfo()|hyperpage}{32}
-\indexentry{endCol()|hyperpage}{32}
-\indexentry{endRow()|hyperpage}{32}
-\indexentry{endTable()|hyperpage}{32}
-\indexentry{startCol(MutableAttributeSet)|hyperpage}{32}
-\indexentry{startHeadCol(MutableAttributeSet)|hyperpage}{32}
-\indexentry{startRow(MutableAttributeSet)|hyperpage}{32}
-\indexentry{startTable(StringBuffer, MutableAttributeSet)|hyperpage}{33}
-\indexentry{TableInfo|hyperpage}{33}
-\indexentry{TableInfo()|hyperpage}{35}
-\indexentry{endCol()|hyperpage}{35}
-\indexentry{endRow()|hyperpage}{35}
-\indexentry{endTable()|hyperpage}{35}
-\indexentry{startCol(MutableAttributeSet)|hyperpage}{35}
-\indexentry{startHeadCol(MutableAttributeSet)|hyperpage}{35}
-\indexentry{startRow(MutableAttributeSet)|hyperpage}{35}
-\indexentry{startTable(StringBuffer, MutableAttributeSet)|hyperpage}{36}
-\indexentry{TestFilter|hyperpage}{36}
-\indexentry{TestFilter()|hyperpage}{36}
-\indexentry{includeClass(ClassDoc)|hyperpage}{36}
-\indexentry{TestFilter|hyperpage}{36}
-\indexentry{TestFilter()|hyperpage}{37}
-\indexentry{includeClass(ClassDoc)|hyperpage}{37}
-\indexentry{TeXDoclet|hyperpage}{37}
-\indexentry{SECTION\_LEVEL|hyperpage}{40}
-\indexentry{CHAPTER\_LEVEL|hyperpage}{40}
-\indexentry{SUBSECTION\_LEVEL|hyperpage}{40}
-\indexentry{BOLD|hyperpage}{40}
-\indexentry{TRUETYPE|hyperpage}{40}
-\indexentry{ITALIC|hyperpage}{40}
-\indexentry{os|hyperpage}{40}
-\indexentry{TeXDoclet()|hyperpage}{40}
-\indexentry{main(String\lbrack \rbrack )|hyperpage}{41}
-\indexentry{optionLength(String)|hyperpage}{41}
-\indexentry{start(RootDoc)|hyperpage}{41}
-\indexentry{validOptions(String\lbrack \rbrack \lbrack \rbrack , DocErrorReporter)|hyperpage}{41}
-\indexentry{TeXDoclet|hyperpage}{41}
-\indexentry{SECTION\_LEVEL|hyperpage}{44}
-\indexentry{CHAPTER\_LEVEL|hyperpage}{44}
-\indexentry{SUBSECTION\_LEVEL|hyperpage}{44}
-\indexentry{BOLD|hyperpage}{44}
-\indexentry{TRUETYPE|hyperpage}{45}
-\indexentry{ITALIC|hyperpage}{45}
-\indexentry{os|hyperpage}{45}
-\indexentry{TeXDoclet()|hyperpage}{45}
-\indexentry{main(String\lbrack \rbrack )|hyperpage}{45}
-\indexentry{optionLength(String)|hyperpage}{45}
-\indexentry{start(RootDoc)|hyperpage}{45}
-\indexentry{validOptions(String\lbrack \rbrack \lbrack \rbrack , DocErrorReporter)|hyperpage}{45}
+\indexentry{printTree(RootDoc, double)|hyperpage}{10}
+\indexentry{Package|hyperpage}{10}
+\indexentry{pkgDoc|hyperpage}{11}
+\indexentry{pkg|hyperpage}{11}
+\indexentry{classes|hyperpage}{11}
+\indexentry{interfaces|hyperpage}{11}
+\indexentry{exceptions|hyperpage}{11}
+\indexentry{errors|hyperpage}{11}
+\indexentry{Package(String, PackageDoc)|hyperpage}{11}
+\indexentry{addElement(ClassDoc)|hyperpage}{11}
+\indexentry{sort()|hyperpage}{11}
+\indexentry{TableInfo|hyperpage}{12}
+\indexentry{TableInfo()|hyperpage}{13}
+\indexentry{endCol()|hyperpage}{13}
+\indexentry{endRow()|hyperpage}{13}
+\indexentry{endTable()|hyperpage}{13}
+\indexentry{startCol(MutableAttributeSet)|hyperpage}{13}
+\indexentry{startHeadCol(MutableAttributeSet)|hyperpage}{13}
+\indexentry{startRow(MutableAttributeSet)|hyperpage}{14}
+\indexentry{startTable(StringBuffer, MutableAttributeSet)|hyperpage}{14}
+\indexentry{TestFilter|hyperpage}{14}
+\indexentry{TestFilter()|hyperpage}{14}
+\indexentry{includeClass(ClassDoc)|hyperpage}{15}
+\indexentry{TeXDoclet|hyperpage}{15}
+\indexentry{SECTION\_LEVEL|hyperpage}{18}
+\indexentry{CHAPTER\_LEVEL|hyperpage}{18}
+\indexentry{SUBSECTION\_LEVEL|hyperpage}{18}
+\indexentry{BOLD|hyperpage}{18}
+\indexentry{TRUETYPE|hyperpage}{18}
+\indexentry{ITALIC|hyperpage}{18}
+\indexentry{os|hyperpage}{18}
+\indexentry{TeXDoclet()|hyperpage}{18}
+\indexentry{main(String\lbrack \rbrack )|hyperpage}{18}
+\indexentry{optionLength(String)|hyperpage}{18}
+\indexentry{start(RootDoc)|hyperpage}{19}
+\indexentry{validOptions(String\lbrack \rbrack \lbrack \rbrack , DocErrorReporter)|hyperpage}{19}
