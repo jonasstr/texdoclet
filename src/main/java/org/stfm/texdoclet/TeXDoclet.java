@@ -398,6 +398,13 @@ public class TeXDoclet extends Doclet {
 		} else if (option.equals("-methoddeclrframe")) {
 			return 2;
 		}
+		switch (option) {
+			case "-d": return 2;
+			case "-notimestamp": return 1;
+			case "-doctitle": return 2;
+			case "-windowtitle": return 2;
+		}
+		
 		System.out.println("unknown TeXDoclet option " + option);
 
 		// return Standard.optionLength(option);
