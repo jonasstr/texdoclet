@@ -908,7 +908,7 @@ public class TeXDoclet extends Doclet {
 	}
 
 	static void printPreambleListingsOptions(PrintWriter os) {
-		os.println("\\lstset{language=Java,breaklines=true}");
+		os.println("\\lstset{language=Java,breaklines=true,columns=fullflexible}");
 	}
 
 	static void printPreambleTitle(PrintWriter os) {
@@ -1953,7 +1953,7 @@ public class TeXDoclet extends Doclet {
 					String parmstr = "";
 					for (; p < parms.length; ++p) {
 						if (p > 0) {
-							os.println(",");
+							os.println(", ");
 						}
 						Type t = parms[p].type();
 						os.print(TRUETYPE
@@ -1972,11 +1972,11 @@ public class TeXDoclet extends Doclet {
 											.name()) + "}");
 						}
 						if (qparmstr.length() != 0) {
-							qparmstr += ",";
+							qparmstr += ", ";
 						}
 						qparmstr += t.qualifiedTypeName() + t.dimension();
 						if (parmstr.length() != 0) {
-							parmstr += ",";
+							parmstr += ", ";
 						}
 						parmstr += t.typeName() + t.dimension();
 					}
