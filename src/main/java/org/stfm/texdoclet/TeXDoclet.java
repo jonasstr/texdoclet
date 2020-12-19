@@ -1706,7 +1706,7 @@ public class TeXDoclet extends Doclet {
 		String parmstr = "";
 		for (; p < parms.length; ++p) {
 			if (p > 0) {
-				os.print(",");
+				os.print(", ");
 			}
 			Type t = parms[p].type();
 			os.print(packageRelativIdentifier(pac, t.qualifiedTypeName()));
@@ -1715,11 +1715,11 @@ public class TeXDoclet extends Doclet {
 				os.print(" " + parms[p].name());
 			}
 			if (qparmstr.length() != 0) {
-				qparmstr += ",";
+				qparmstr += ", ";
 			}
 			qparmstr += t.qualifiedTypeName() + t.dimension();
 			if (parmstr.length() != 0) {
-				parmstr += ",";
+				parmstr += ", ";
 			}
 			parmstr += t.typeName() + t.dimension();
 		}
