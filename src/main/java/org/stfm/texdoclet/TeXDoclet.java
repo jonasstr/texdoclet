@@ -195,7 +195,7 @@ public class TeXDoclet extends Doclet {
 	public static final String DEFAULT_CLASS_FRAME = "none";
 	public static final String DEFAULT_METHOD_FRAME = "none";
 
-	public static final String BOLD = "{\\bf ";
+	public static final String BOLD = "{\\bfseries ";
 	// no bold AND truetype support if using textbf !
 	// public static final String BOLD = "\\textbf{";
 	// public static final String TRUETYPE = "{\\tt ";
@@ -707,8 +707,8 @@ public class TeXDoclet extends Doclet {
 				if (ITALIC.indexOf("textit") != -1) {
 					os.println("\\hskip -.05in");
 				}
-				os.println("\\hbox to \\hsize{" + ITALIC
-						+ " Package Contents\\hfil Page}}");
+				os.println("\\hbox to \\hsize{" +
+						" Package contents\\hfil Page}");
 				if (useHr) {
 					os.println("\\rule{\\hsize}{.7mm}");
 				}
@@ -1022,9 +1022,10 @@ public class TeXDoclet extends Doclet {
 	static void tocForClasses(String title, Vector<ClassDoc> v) {
 		if (v.size() > 0) {
 			os.println("\\vskip .13in");
-
 			os.println("\\hbox{" + BOLD + " "
 					+ HTMLtoLaTeXBackEnd.fixText(title) + "}}");
+			os.println("\\vskip .13in");
+
 			for (int i = 0; i < v.size(); ++i) {
 				ClassDoc cd = v.elementAt(i);
 				os.print("\\entityintro{"
