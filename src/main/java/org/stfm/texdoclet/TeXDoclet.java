@@ -1024,7 +1024,7 @@ public class TeXDoclet extends Doclet {
 			os.println("\\vskip .13in");
 			os.println("\\hbox{" + BOLD + " "
 					+ HTMLtoLaTeXBackEnd.fixText(title) + "}}");
-			os.println("\\vskip .13in")
+			os.println("\\vskip .13in");
 
 			for (int i = 0; i < v.size(); ++i) {
 				ClassDoc cd = v.elementAt(i);
