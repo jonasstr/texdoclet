@@ -697,6 +697,9 @@ public class TeXDoclet extends Doclet {
 						+ "}{}");
 			}
 
+			// Custom latex command to insert package diagram created with umldoclet
+			os.println("\\insertimage{" + HTMLtoLaTeXBackEnd.fixText(pkg.pkg) + "}");
+
 			// os.println(
 			// "\\markboth{\\protect\\packagename}{\\protect\\packagename}" );
 			// os.println(
@@ -1169,6 +1172,9 @@ public class TeXDoclet extends Doclet {
 				printTags(cd.containingPackage(), cd.inlineTags());
 				os.println("\\vskip .1in ");
 			}
+
+			// Custom latex command to insert class diagram created with umldoclet
+			os.println("\\insertimage{" + HTMLtoLaTeXBackEnd.fixText(cd.name()) + "}");
 
 			SeeTag[] sees = cd.seeTags();
 			if (sees.length > 0) {
