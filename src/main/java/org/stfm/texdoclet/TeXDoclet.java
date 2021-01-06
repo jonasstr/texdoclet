@@ -1167,14 +1167,14 @@ public class TeXDoclet extends Doclet {
 						+ refName(makeRefKey(cd.qualifiedName())) + "}{}");
 			}
 
+			// Custom latex command to insert class diagram created with umldoclet
+			os.println("\\insertimage{" + HTMLtoLaTeXBackEnd.fixText(cd.name()) + "}");
+
 			os.println("\\vskip .1in ");
 			if (cd.inlineTags().length > 0) {
 				printTags(cd.containingPackage(), cd.inlineTags());
 				os.println("\\vskip .1in ");
 			}
-
-			// Custom latex command to insert class diagram created with umldoclet
-			os.println("\\insertimage{" + HTMLtoLaTeXBackEnd.fixText(cd.name()) + "}");
 
 			SeeTag[] sees = cd.seeTags();
 			if (sees.length > 0) {
