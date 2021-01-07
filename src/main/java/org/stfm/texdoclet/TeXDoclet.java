@@ -23,6 +23,8 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 
 import com.sun.javadoc.AnnotationDesc;
+import com.sun.javadoc.AnnotationDesc.ElementValuePair;
+import com.sun.javadoc.AnnotationValue;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.DocErrorReporter;
 import com.sun.javadoc.Doclet;
@@ -1705,8 +1707,12 @@ public class TeXDoclet extends Doclet {
 		}
 		os.println();
 
-		// Print signature
 		os.println("\\begin{lstlisting}[frame=" + methodDeclarationFrame + "]");
+		
+		// Annotations
+		printMemberAnnotations(mem);
+		
+		// Print signature
 		if (!mem.containingClass().isInterface()) {
 			os.print(mem.modifiers() + " ");
 		}
@@ -1865,6 +1871,30 @@ public class TeXDoclet extends Doclet {
 			os.println("\\end{itemize}");
 		}
 		os.println("}%end item");
+	}
+	
+	private static void printMemberAnnotations(ExecutableMemberDoc member) {
+		if (member.annotations().length > 0) {
+			for (int i = 0; i < member.annotations().length; i++) {
+				AnnotationDesc annotation = member.annotations()[i];
+				String annotationName = annotation.annotationType().name();
+				os.println("@" + annotationName);
+				int annotationParamsCount = annotation.elementValues().length;
+				if (annotationParamsCount > 0) {
+					os.print("(");
+					for (int j = 0; j < annotationParamsCount; j++) {
+						AnnotationValue value = annotation.elementValues()[j].value();
+						os.print(value);
+						// Not the last parameter
+						if (j != annotationParamsCount - 1) {
+							os.print(", ");
+						}
+					}
+					os.print(")");
+				}
+				os.println();
+			}
+		}
 	}
 
 	/**
