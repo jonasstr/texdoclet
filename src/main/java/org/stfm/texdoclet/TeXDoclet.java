@@ -1878,7 +1878,14 @@ public class TeXDoclet extends Doclet {
 			for (int i = 0; i < member.annotations().length; i++) {
 				AnnotationDesc annotation = member.annotations()[i];
 				String annotationName = annotation.annotationType().name();
-				os.println("@" + annotationName);
+				os.print("@" + annotationName);
+				
+				// Don't print contents of SQL queries
+				if (annotationName.equals("Query")) {
+					os.println("(...)");
+					continue;
+				}
+				
 				int annotationParamsCount = annotation.elementValues().length;
 				if (annotationParamsCount > 0) {
 					os.print("(");
