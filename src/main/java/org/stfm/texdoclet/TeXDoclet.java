@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import com.sun.javadoc.AnnotationDesc;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.DocErrorReporter;
 import com.sun.javadoc.Doclet;
@@ -1192,8 +1193,18 @@ public class TeXDoclet extends Doclet {
 
 			os.println("\\begin{lstlisting}[frame=" + classDeclarationFrame
 					+ "]");
+			
+			// Print annotations
+			if (cd.annotations().length > 0) {
+				for (int j = 0; j < cd.annotations().length; j++) {
+					AnnotationDesc annotation = cd.annotations()[j];
+					String annotationName = annotation.annotationType().name();
+					os.println("@" + annotationName);
+				}
+			}
+			
 			os.print(cd.modifiers() + " ");
-			if (cd.isInterface() == false) {
+			if (!cd.isInterface()) {
 				os.print("class ");
 			}
 			os.println(cd.name());
