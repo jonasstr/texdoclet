@@ -1262,9 +1262,8 @@ public class TeXDoclet extends Doclet {
 					if (!subclasses.equals("")) {
 						subclasses += ", ";
 					}
-					subclasses += HTMLtoLaTeXBackEnd.fixText(cls.name());
-					subclasses += "\\small{\\hyperref[" + cls.qualifiedName() + "]{"
-							+ cls.name() + "}}";
+					subclasses += "\\hyperref[" + cls.qualifiedName() + "]{"
+							+ cls.name() + "}";
 				}
 			}
 
@@ -1786,12 +1785,10 @@ public class TeXDoclet extends Doclet {
 					os.print("\\hyperlink{" + refName(makeRefKey(qualifiedClassName))
 							+ "}{");
 				}
-				os.print(packageRelativIdentifier(pac, qualifiedClassName));
 				if (hyperref) {
 					os.print("}");
 				}
 				String shortClassName = mem.containingClass().name();
-				os.print("{\\small ");
 				os.print("\\hyperref[" + qualifiedClassName + "]{" + shortClassName + "}");
 				os.println("} }\n");
 			}
@@ -2166,10 +2163,9 @@ public class TeXDoclet extends Doclet {
 					if (hyperref) {
 						htmlstr += "}";
 					}
-					htmlstr += "}{\\small \n";
-					htmlstr += "\\refdefined{" + refName(makeRefKey(linkstr))
-							+ "}";
-					htmlstr += "}";
+					htmlstr += "}{ \n";
+					htmlstr += "\\hyperref[" + HTMLtoLaTeXBackEnd.fixText(label) + "]{"
+					+ linkstr + "}}";
 					htmlstr += "\"></TEX>";
 				}
 			} else if ("@code".equals(tags[i].name())) {
