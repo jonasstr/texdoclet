@@ -1726,7 +1726,7 @@ public class TeXDoclet extends Doclet {
 		}
 		if (mem instanceof MethodDoc) {
 			os.print(packageRelativIdentifier(pac, ((MethodDoc) mem)
-					.returnType().toString())
+					.returnType().typeName())
 					+ " ");
 		}
 		os.print(mem.name() + "(");
@@ -1739,7 +1739,7 @@ public class TeXDoclet extends Doclet {
 				os.print(", ");
 			}
 			Type t = parms[p].type();
-			os.print(packageRelativIdentifier(pac, t.qualifiedTypeName()));
+			os.print(packageRelativIdentifier(pac, t.typeName()));
 			
 			// Print generic types
 			printTypeArguments(t);			
@@ -2214,9 +2214,7 @@ public class TeXDoclet extends Doclet {
 	 */
 	static String packageRelativIdentifier(PackageDoc doc, String str) {
 		if (doc != null && str.startsWith(doc.name() + ".")) {
-			// Don't print packages of standard Java classes
-			String docName = doc.name().startsWith("java") ? "" : doc.name();
-			return str.substring(docName.length() + 1);
+			return str.substring(doc.name().length() + 1);
 		} else {
 			return str;
 		}
