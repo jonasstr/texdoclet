@@ -1219,7 +1219,7 @@ public class TeXDoclet extends Doclet {
 			}
 			os.println(cd.name());
 			ClassDoc sc = cd.superclass();
-			if (sc != null) {
+			if (sc != null && !sc.qualifiedName().equals("java.lang.Object")) {
 				os.print(" extends " + sc.qualifiedName());
 			}
 
@@ -1263,8 +1263,8 @@ public class TeXDoclet extends Doclet {
 						subclasses += ", ";
 					}
 					subclasses += HTMLtoLaTeXBackEnd.fixText(cls.name());
-					subclasses += "\\small{\\refdefined{"
-							+ refName(makeRefKey(cls.qualifiedName())) + "}}";
+					subclasses += "\\small{\\hyperref[" + cls.qualifiedName() + "]{"
+							+ cls.name() + "}}";
 				}
 			}
 
@@ -1297,18 +1297,18 @@ public class TeXDoclet extends Doclet {
 							if (!subintf.equals("")) {
 								subintf += ", ";
 							}
-							subintf += cls.name();
-							subintf += "\\small{\\refdefined{"
-									+ refName(makeRefKey(cls.qualifiedName()))
-									+ "}}";
+							// Make class name clickable
+							subintf += "\\hyperref[" + cls.name() + "]{"
+									+ cls.qualifiedName()
+									+ "}";
 						} else {
 							if (!implclasses.equals("")) {
 								implclasses += ", ";
 							}
 							implclasses += cls.name();
-							implclasses += "\\small{\\refdefined{"
-									+ refName(makeRefKey(cls.qualifiedName()))
-									+ "}}";
+							implclasses += "\\hyperref[" + cls.name() + "]{"
+									+ cls.qualifiedName()
+									+ "}";
 						}
 					}
 				}
@@ -1481,7 +1481,7 @@ public class TeXDoclet extends Doclet {
 				os.print(HTMLtoLaTeXBackEnd.fixText(f.modifiers()) + " ");
 			}
 			os.print(HTMLtoLaTeXBackEnd.fixText(packageRelativIdentifier(
-					f.containingPackage(), f.type().toString()))
+					f.containingPackage(), f.type().typeName()))
 					+ "\\ ");
 			os.print("" + BOLD + " " + HTMLtoLaTeXBackEnd.fixText(f.name())
 					+ "}");
@@ -1781,17 +1781,18 @@ public class TeXDoclet extends Doclet {
 				os.println(BOLD + " Description}\n");
 			} else {
 				os.print(BOLD + " Description copied from ");
-				String classname = mem.containingClass().qualifiedName();
+				String qualifiedClassName = mem.containingClass().qualifiedName();
 				if (hyperref) {
-					os.print("\\hyperlink{" + refName(makeRefKey(classname))
+					os.print("\\hyperlink{" + refName(makeRefKey(qualifiedClassName))
 							+ "}{");
 				}
-				os.print(packageRelativIdentifier(pac, classname));
+				os.print(packageRelativIdentifier(pac, qualifiedClassName));
 				if (hyperref) {
 					os.print("}");
 				}
+				String shortClassName = mem.containingClass().name();
 				os.print("{\\small ");
-				os.print("\\refdefined{" + refName(makeRefKey(classname)) + "}");
+				os.print("\\hyperref[" + qualifiedClassName + "]{" + shortClassName + "}");
 				os.println("} }\n");
 			}
 			printTags(mem.containingPackage(), mem.inlineTags());
