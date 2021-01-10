@@ -24,17 +24,20 @@ import java.util.Vector;
 
 import com.sun.javadoc.AnnotationDesc;
 import com.sun.javadoc.AnnotationDesc.ElementValuePair;
+import com.sun.javadoc.AnnotationTypeElementDoc;
 import com.sun.javadoc.AnnotationValue;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.DocErrorReporter;
 import com.sun.javadoc.Doclet;
 import com.sun.javadoc.ExecutableMemberDoc;
 import com.sun.javadoc.FieldDoc;
+import com.sun.javadoc.LanguageVersion; 
 import com.sun.javadoc.MemberDoc;
 import com.sun.javadoc.MethodDoc;
 import com.sun.javadoc.PackageDoc;
 import com.sun.javadoc.ParamTag;
 import com.sun.javadoc.Parameter;
+import com.sun.javadoc.ParameterizedType;
 import com.sun.javadoc.RootDoc;
 import com.sun.javadoc.SeeTag;
 import com.sun.javadoc.Tag;
@@ -314,6 +317,11 @@ public class TeXDoclet extends Doclet {
 		System.out.println("... Done.");
 
 	}
+	
+	public static LanguageVersion languageVersion() {
+	      return LanguageVersion.JAVA_1_5;
+	}
+	
 
 	/**
 	 * Doclet class method that returns how many arguments would be consumed if
@@ -1732,6 +1740,13 @@ public class TeXDoclet extends Doclet {
 			}
 			Type t = parms[p].type();
 			os.print(packageRelativIdentifier(pac, t.qualifiedTypeName()));
+			
+			// Check for generic type
+			ParameterizedType paramType = t.asParameterizedType();
+			if (paramType != null) {
+				os.print("<" + paramType.typeArguments().toString() + ">");
+			}
+			
 			os.print(t.dimension());
 			if (parms[p].name().equals("") == false) {
 				os.print(" " + parms[p].name());
@@ -1890,8 +1905,8 @@ public class TeXDoclet extends Doclet {
 				if (annotationParamsCount > 0) {
 					os.print("(");
 					for (int j = 0; j < annotationParamsCount; j++) {
-						AnnotationValue value = annotation.elementValues()[j].value();
-						os.print(value);
+						ElementValuePair elementValue = annotation.elementValues()[j];
+						os.print(elementValue.element().name() + " = " + elementValue.value());
 						// Not the last parameter
 						if (j != annotationParamsCount - 1) {
 							os.print(", ");
