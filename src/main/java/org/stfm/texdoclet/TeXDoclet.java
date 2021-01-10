@@ -1259,11 +1259,11 @@ public class TeXDoclet extends Doclet {
 			for (int index = 0; index < theroot.classes().length; index++) {
 				ClassDoc cls = theroot.classes()[index];
 				if (cls.subclassOf(cd) && !cls.equals(cd)) {
+					subclasses += "\\hyperref[" + cls.qualifiedName() + "]{"
+							+ cls.name() + "}";
 					if (!subclasses.equals("")) {
 						subclasses += ", ";
 					}
-					subclasses += "\\hyperref[" + cls.qualifiedName() + "]{"
-							+ cls.name() + "}";
 				}
 			}
 
@@ -1304,7 +1304,6 @@ public class TeXDoclet extends Doclet {
 							if (!implclasses.equals("")) {
 								implclasses += ", ";
 							}
-							implclasses += cls.name();
 							implclasses += "\\hyperref[" + cls.name() + "]{"
 									+ cls.qualifiedName()
 									+ "}";
@@ -2297,7 +2296,7 @@ public class TeXDoclet extends Doclet {
 				os.print("}");
 			}
 			os.println("} {\\small ");
-			os.print("\\refdefined{" + refName(makeRefKey(memName)) + "}");
+			os.print("\\hyperref[" + tag.referencedPackage().name() + "]{" + memName + "}");
 			os.println("}%end");
 		} else {
 			os.print(HTMLtoLaTeXBackEnd.fixText(tag.text()));
