@@ -1741,11 +1741,8 @@ public class TeXDoclet extends Doclet {
 			Type t = parms[p].type();
 			os.print(packageRelativIdentifier(pac, t.qualifiedTypeName()));
 			
-			// Check for generic type
-			ParameterizedType paramType = t.asParameterizedType();
-			if (paramType != null) {
-				os.print("<" + paramType.typeArguments().toString() + ">");
-			}
+			// Print generic types
+			printTypeArguments(t);			
 			
 			os.print(t.dimension());
 			if (parms[p].name().equals("") == false) {
@@ -1886,6 +1883,25 @@ public class TeXDoclet extends Doclet {
 			os.println("\\end{itemize}");
 		}
 		os.println("}%end item");
+	}
+	
+	private static void printTypeArguments(Type type) {
+		ParameterizedType paramType = type.asParameterizedType();
+		if (paramType != null) {
+			os.print("<");
+			int numTypeArguments = paramType.typeArguments().length;
+			if (numTypeArguments > 0) {
+				for (int i = 0; i < numTypeArguments; i++) {
+					String typeArgumentName = paramType.typeArguments()[i].simpleTypeName();
+					os.print(typeArgumentName);
+					// Not the last type argument
+					if (i != numTypeArguments - 1) {
+						os.print(", ");
+					}
+				}
+			}
+			os.print(">");
+		}
 	}
 	
 	private static void printMemberAnnotations(ExecutableMemberDoc member) {
@@ -2198,7 +2214,9 @@ public class TeXDoclet extends Doclet {
 	 */
 	static String packageRelativIdentifier(PackageDoc doc, String str) {
 		if (doc != null && str.startsWith(doc.name() + ".")) {
-			return str.substring(doc.name().length() + 1);
+			// Don't print packages of standard Java classes
+			String docName = doc.name().startsWith("java") ? "" : doc.name();
+			return str.substring(docName.length() + 1);
 		} else {
 			return str;
 		}
