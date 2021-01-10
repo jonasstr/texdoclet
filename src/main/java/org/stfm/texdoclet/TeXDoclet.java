@@ -1259,62 +1259,59 @@ public class TeXDoclet extends Doclet {
 			for (int index = 0; index < theroot.classes().length; index++) {
 				ClassDoc cls = theroot.classes()[index];
 				if (cls.subclassOf(cd) && !cls.equals(cd)) {
-					subclasses += "\\hyperref[" + cls.qualifiedName() + "]{"
-							+ cls.name() + "}";
-					if (!subclasses.equals("")) {
+					
+					// If there were previous subclasses
+					if (!subclasses.isEmpty()) {
 						subclasses += ", ";
 					}
+					subclasses += "\\hyperref[" + cls.qualifiedName() + "]{"
+							+ cls.name() + "}";
+					
 				}
+				
 			}
 
-			if (cd.isInterface()) {
-				if (!subclasses.equals("")) {
-					os.println("\\" + sectionLevels[2]
-							+ "{All known subinterfaces}{" + subclasses + "}");
-				}
-			} else {
-				if (!subclasses.equals("")) {
-					os.println("\\" + sectionLevels[2]
-							+ "{All known subclasses}{" + subclasses + "}");
-				}
+			if (cd.isClass() && !subclasses.isEmpty()) {
+				os.println("\\" + sectionLevels[2]
+						+ "{All known subclasses}{" + subclasses + "}");
 			}
 
-			String subintf = "";
-			String implclasses = "";
+			String subInterfaces = "";
+			String implementingClasses = "";
 			if (cd.isInterface()) {
 				for (int index = 0; index < theroot.classes().length; index++) {
+					
 					ClassDoc cls = theroot.classes()[index];
-					boolean impls = false;
-					for (int w = 0; w < cls.interfaces().length; w++) {
-						ClassDoc intfDoc = cls.interfaces()[w];
-						if (intfDoc.equals(cd)) {
-							impls = true;
-						}
+					// Class neither implements this interface nor extends it
+					if (!Arrays.asList(cls.interfaces()).contains(cd)) {
+						continue;
 					}
-					if (impls) {
-						if (cls.isInterface()) {
-							if (!subintf.equals("")) {
-								subintf += ", ";
-							}
-							// Make class name clickable
-							subintf += "\\hyperref[" + cls.name() + "]{"
-									+ cls.qualifiedName()
-									+ "}";
-						} else {
-							if (!implclasses.equals("")) {
-								implclasses += ", ";
-							}
-							implclasses += "\\hyperref[" + cls.name() + "]{"
-									+ cls.qualifiedName()
-									+ "}";
+					
+					// Make class name clickable
+					String linkToInterface = "\\hyperref[" + cls.qualifiedName() + "]{" + cls.name() + "}";
+					
+					if (cls.isInterface()) {
+						if (!subInterfaces.isEmpty()) {
+							subInterfaces += ", ";
 						}
+						subInterfaces += linkToInterface;
+					} else {
+						if (!implementingClasses.isEmpty()) {
+							implementingClasses += ", ";
+						}
+						implementingClasses += linkToInterface;
 					}
 				}
 
-				if (!implclasses.equals("")) {
+				if (!implementingClasses.isEmpty()) {
 					os.println("\\" + sectionLevels[2]
-							+ "{All classes known to implement interface}{"
-							+ implclasses + "}");
+							+ "{All classes known to implement this interface}{"
+							+ implementingClasses + "}");
+				}
+				if (!subInterfaces.isEmpty()) {
+					os.println("\\" + sectionLevels[2]
+							+ "{All known subinterfaces}{"
+							+ subInterfaces + "}");
 				}
 			}
 
@@ -2250,15 +2247,21 @@ public class TeXDoclet extends Doclet {
 	 *            The package to which the see tag should be relative to.
 	 */
 	static void printSeesTag(SeeTag tag, PackageDoc relativeTo) {
-		String memName = "";
+		
+		String referencedQualifiedName = "";
+		String referencedShortName = "";
 		String memText = "";
+		
 		if (tag.referencedMember() != null) {
 			if (tag.referencedMember() instanceof ExecutableMemberDoc) {
 				ExecutableMemberDoc m = (ExecutableMemberDoc) tag
 						.referencedMember();
-				memName = m.qualifiedName() + m.signature();
+				referencedQualifiedName = m.qualifiedName() + m.signature();
+				referencedShortName = m.name() + m.flatSignature();
+				
 				memText = HTMLtoLaTeXBackEnd.fixText(packageRelativIdentifier(
 						relativeTo, m.qualifiedName()));
+				
 				memText += "(";
 				for (int i = 0; i < m.parameters().length; i++) {
 					memText += HTMLtoLaTeXBackEnd
@@ -2270,34 +2273,32 @@ public class TeXDoclet extends Doclet {
 				}
 				memText += ")";
 			} else {
-				memName = tag.referencedMember().qualifiedName();
+				referencedQualifiedName = tag.referencedMember().qualifiedName();
+				referencedShortName = tag.referencedMember().name();
 				memText = HTMLtoLaTeXBackEnd.fixText(packageRelativIdentifier(
-						relativeTo, memName));
+						relativeTo, referencedQualifiedName));
 			}
-
 		} else if (tag.referencedClass() != null) {
-			memName = tag.referencedClass().qualifiedName();
+			referencedQualifiedName = tag.referencedClass().qualifiedName();
+			referencedShortName = tag.referencedClass().name();
 			memText = HTMLtoLaTeXBackEnd.fixText(packageRelativIdentifier(
-					relativeTo, memName));
+					relativeTo, referencedQualifiedName));
 		} else if (tag.referencedPackage() != null) {
-			memName = tag.referencedPackage().name();
-			memText = HTMLtoLaTeXBackEnd.fixText(memName);
+			referencedQualifiedName = tag.referencedPackage().name();
+			referencedShortName = referencedQualifiedName;
+			memText = HTMLtoLaTeXBackEnd.fixText(referencedQualifiedName);
 		}
 
-		if (memName.equals("") == false) {
-			os.print(TRUETYPE);
+		if (!referencedQualifiedName.isEmpty()) {
 			if (hyperref) {
-				os.print("\\hyperlink{" + refName(makeRefKey(memName)) + "}{");
+				os.print("\\hyperlink{" + referencedQualifiedName + "}{");
 			}
 			// os.print(HTMLtoLaTeXBackEnd.fixText(memText));
 			// System.out.println("see also link : " + memText);
-			os.print(memText);
 			if (hyperref) {
 				os.print("}");
 			}
-			os.println("} {\\small ");
-			os.print("\\hyperref[" + tag.referencedPackage().name() + "]{" + memName + "}");
-			os.println("}%end");
+			os.println("\\hyperref[" + referencedQualifiedName + "]{" + referencedShortName + "}");
 		} else {
 			os.print(HTMLtoLaTeXBackEnd.fixText(tag.text()));
 		}
