@@ -1726,14 +1726,11 @@ public class TeXDoclet extends Doclet {
 				os.print(BOLD + " Description copied from ");
 				String qualifiedClassName = mem.containingClass().qualifiedName();
 				if (hyperref) {
-					os.print("\\hyperlink{" + refName(makeRefKey(qualifiedClassName)) + "}{");
-				}
-				if (hyperref) {
-					os.print("}");
+					os.print("\\hyperlink{" + refName(makeRefKey(qualifiedClassName)) + "}{}");
 				}
 				String shortClassName = mem.containingClass().name();
 				os.print("\\hyperref[" + qualifiedClassName + "]{" + shortClassName + "}");
-				os.println("} }\n");
+				os.println("}\n");
 			}
 			printTags(mem.containingPackage(), mem.inlineTags());
 			os.println("\n}");
