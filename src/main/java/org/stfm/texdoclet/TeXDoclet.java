@@ -1730,10 +1730,10 @@ public class TeXDoclet extends Doclet {
 				}
 				String shortClassName = mem.containingClass().name();
 				os.print("\\hyperref[" + qualifiedClassName + "]{" + shortClassName + "}");
-				os.println("}\n");
 			}
 			printTags(mem.containingPackage(), mem.inlineTags());
 			os.println("\n}");
+			os.println();
 		}
 
 		// Parameter tags
@@ -2027,49 +2027,41 @@ public class TeXDoclet extends Doclet {
 
 		for (int i = 0; i < tags.length; i++) {
 			if (tags[i] instanceof SeeTag) {
-				SeeTag link = (SeeTag) tags[i];
+				SeeTag seeTag = (SeeTag) tags[i];
 
 				String linkstr = "";
 				String label;
-				if (link.referencedMember() != null) {
-					MemberDoc member = link.referencedMember();
+				if (seeTag.referencedMember() != null) {
+					MemberDoc member = seeTag.referencedMember();
 					linkstr = member.qualifiedName();
 					label = classRelativeIdentifier(member.containingClass(), member.name());
-					if (link.referencedMember() instanceof ExecutableMemberDoc) {
+					if (seeTag.referencedMember() instanceof ExecutableMemberDoc) {
 						// If the member is a method, append the method
 						// signature
 						ExecutableMemberDoc m = (ExecutableMemberDoc) member;
 						linkstr += m.signature();
 						label += m.flatSignature();
 					}
-				} else if (link.referencedClass() != null) {
-					linkstr = link.referencedClass().qualifiedName();
-					label = packageRelativIdentifier(this_package, link.referencedClass().name());
-				} else if (link.referencedPackage() != null) {
-					linkstr = link.referencedPackage().name();
+				} else if (seeTag.referencedClass() != null) {
+					linkstr = seeTag.referencedClass().qualifiedName();
+					label = packageRelativIdentifier(this_package, seeTag.referencedClass().name());
+				} else if (seeTag.referencedPackage() != null) {
+					linkstr = seeTag.referencedPackage().name();
 					label = linkstr;
 				} else {
 					label = "";
 				}
 
 				if (linkstr.isEmpty()) {
-					htmlstr += link.text();
+					htmlstr += seeTag.text();
 				} else {
 					// Encapsulate the link in a "TEX" tag and let
 					// HTMLtoLaTeXBackEnd.fixText handle the rest.
-					htmlstr += "<TEX txt=\"\\texttt{\\small ";
-					if (hyperref) {
-						htmlstr += "\\hyperlink{" + refName(makeRefKey(linkstr)) + "}{";
+					htmlstr += "<TEX txt=\"\\texttt{";					
+					if (!seeTag.label().isEmpty()) {
+						label = seeTag.label();
 					}
-					if (!link.label().isEmpty()) {
-						label = link.label();
-					}
-					htmlstr += HTMLtoLaTeXBackEnd.fixText(label);
-					if (hyperref) {
-						htmlstr += "}";
-					}
-					htmlstr += "}{ \n";
-					htmlstr += "\\hyperref[" + HTMLtoLaTeXBackEnd.fixText(label) + "]{" + linkstr + "}}";
+					htmlstr += "\\hyperref[" + HTMLtoLaTeXBackEnd.fixText(linkstr) + "]{" + label + "}}";
 					htmlstr += "\"></TEX>";
 				}
 			} else if ("@code".equals(tags[i].name())) {
