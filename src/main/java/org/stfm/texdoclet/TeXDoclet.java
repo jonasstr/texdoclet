@@ -2064,7 +2064,7 @@ public class TeXDoclet extends Doclet {
 					if (!seeTag.label().isEmpty()) {
 						label = seeTag.label();
 					}
-					htmlstr += "\\hyperref[" + HTMLtoLaTeXBackEnd.fixText(linkstr) + "]{" + label + "}}";
+					htmlstr += "\\hyperref[" + linkstr + "]{" + HTMLtoLaTeXBackEnd.fixText(label) + "}}";
 					htmlstr += "\"></TEX>";
 				}
 			} else if ("@code".equals(tags[i].name())) {
