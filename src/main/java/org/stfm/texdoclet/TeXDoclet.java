@@ -272,6 +272,10 @@ public class TeXDoclet extends Doclet {
 			+ "	overflow: hidden;" + "}" + ".pdfDoc {" + "	height: 100%;" + " width: 100%;" + "}" + "</style>"
 			+ "<title>" + REPLACE_TITLE + "</title></head><body><object data=\"" + REPLACE_OUT
 			+ "\" type=\"application/pdf\" class=\"pdfDoc\"></object></body></html>";
+	
+	// Avoids indentation for list items (e.g. large Description section would be not that readable
+	// otherwise). They only work with the enumitem package.
+	private static final String ITEMIZE_ARGS = "[leftmargin=*,align=left]";
 
 	public static void main(String args[]) {
 
@@ -1432,7 +1436,7 @@ public class TeXDoclet extends Doclet {
 				if (useHr) {
 					os.println("\\rule[1em]{\\hsize}{2pt}");
 				}
-				os.println("\\begin{itemize}");
+				os.println("\\begin{itemize}" + ITEMIZE_ARGS);
 				yet = true;
 			}
 			os.println("\\item{");
@@ -1567,7 +1571,7 @@ public class TeXDoclet extends Doclet {
 		Collections.sort(l);
 		Iterator<ExecutableMemberDoc> itr = l.iterator();
 		os.println("\\vskip -2em");
-		os.println("\\begin{itemize}");
+		os.println("\\begin{itemize}" + ITEMIZE_ARGS);
 		for (int i = 0; itr.hasNext(); ++i) {
 			ExecutableMemberDoc mem = itr.next();
 
@@ -1716,7 +1720,7 @@ public class TeXDoclet extends Doclet {
 		// Description
 		if (mem.inlineTags().length > 0) {
 			if (!yet) {
-				os.println("\\begin{itemize}");
+				os.println("\\begin{itemize}" + ITEMIZE_ARGS);
 				yet = true;
 			}
 			os.println("\\item{");
@@ -1941,7 +1945,7 @@ public class TeXDoclet extends Doclet {
 		} else {
 
 			os.println("\\vskip -2em");
-			os.println("\\begin{itemize}");
+			os.println("\\begin{itemize}" + ITEMIZE_ARGS);
 			while (itr.hasNext()) {
 				MemberDoc mem = itr.next();
 
