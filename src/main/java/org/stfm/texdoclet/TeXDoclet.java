@@ -275,7 +275,7 @@ public class TeXDoclet extends Doclet {
 	
 	// Avoids indentation for list items (e.g. large Description section would be not that readable
 	// otherwise). They only work with the enumitem package.
-	private static final String ITEMIZE_ARGS = "[leftmargin=*,align=left]";
+	private static final String ITEMIZE_ARGS = "[leftmargin=*,itemindent=.5cm,labelwidth=\\itemindent,align=left]";
 
 	public static void main(String args[]) {
 
@@ -1733,11 +1733,10 @@ public class TeXDoclet extends Doclet {
 					os.print("\\hyperlink{" + refName(makeRefKey(qualifiedClassName)) + "}{}");
 				}
 				String shortClassName = mem.containingClass().name();
-				os.print("\\hyperref[" + qualifiedClassName + "]{" + shortClassName + "}");
+				os.println("\\hyperref[" + qualifiedClassName + "]{" + shortClassName + "}}");
 			}
+			os.println("\\\\");
 			printTags(mem.containingPackage(), mem.inlineTags());
-			os.println("\n}");
-			os.println();
 		}
 
 		// Parameter tags
