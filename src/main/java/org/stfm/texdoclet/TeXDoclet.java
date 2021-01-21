@@ -687,7 +687,7 @@ public class TeXDoclet extends Doclet {
 			}
 
 			// Custom latex command to insert package diagram created with umldoclet
-			os.println("\\insertimage{" + HTMLtoLaTeXBackEnd.fixText(pkg.pkg) + "}");
+			os.println("\\insertpackage{" + HTMLtoLaTeXBackEnd.fixText(pkg.pkg) + "}");
 
 			// os.println(
 			// "\\markboth{\\protect\\packagename}{\\protect\\packagename}" );
@@ -1637,6 +1637,11 @@ public class TeXDoclet extends Doclet {
 					return;
 				}
 			}
+		}
+		
+		if (mem.qualifiedName().equals("java.lang.Object.equals")
+				|| mem.qualifiedName().equals("java.lang.Object.toString")) {
+			return;
 		}
 
 		ParamTag[] params = mem.paramTags();
