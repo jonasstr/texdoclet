@@ -1740,7 +1740,7 @@ public class TeXDoclet extends Doclet {
 				String shortClassName = mem.containingClass().name();
 				os.println("\\hyperref[" + qualifiedClassName + "]{" + shortClassName + "}}");
 			}
-			os.println("\\\\");
+			os.println();
 			printTags(mem.containingPackage(), mem.inlineTags());
 		}
 
